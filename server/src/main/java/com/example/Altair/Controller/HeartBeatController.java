@@ -1,9 +1,8 @@
-package com.example.AltairNew.Controller;
+package com.example.Altair.Controller;
 
 
-
-import com.example.AltairNew.Model.HeartBeatModel;
-import com.example.AltairNew.Services.HeartBeatService;
+import com.example.Altair.Model.HeartBeatModel;
+import com.example.Altair.Services.HeartBeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,11 +38,15 @@ public class HeartBeatController {
     public ResponseEntity<String> InsertData(@RequestBody HeartBeatModel heartBeatModel) {
 
         String res = heartBeatService.insertData(heartBeatModel);
-        if(res.equals("Insert record"))
+        if(res.equals("Record Inserted"))
         {
-            return new ResponseEntity<>("Record Inserted",HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<>(null,HttpStatus.NOT_ACCEPTABLE);
+        else if(res.equals("Invalid Time error"))
+        {
+            return new ResponseEntity<>(res,HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(res,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/read")
@@ -52,26 +55,16 @@ public class HeartBeatController {
             @RequestParam(required = false) String time
             ) {
 
-        heartBeatService.readData(date,time);
-        return new ResponseEntity<>(null,HttpStatus.NOT_ACCEPTABLE);
+        String res = heartBeatService.readData(date,time);
+        if(res ==  "Invalid Format Query Params")
+        {
+            return new ResponseEntity<>("Invalid Format Query Params",HttpStatus.BAD_REQUEST);
+        }
+        else if(res == null)
+        {
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(res,HttpStatus.OK);
+
     }
-    @PutMapping("/update")
-    public ResponseEntity<String> UpdateData(
-            @RequestParam(required = false,defaultValue = "0") int page,
-            @RequestParam(required = false,defaultValue = "10") int page_size,
-            @RequestParam(required = false,defaultValue = "") String name) {
-
-
-        return new ResponseEntity<>(null,HttpStatus.NOT_ACCEPTABLE);
-    }
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> DeleteData(
-            @RequestParam(required = false,defaultValue = "0") int page,
-            @RequestParam(required = false,defaultValue = "10") int page_size,
-            @RequestParam(required = false,defaultValue = "") String name) {
-
-
-        return new ResponseEntity<>(null,HttpStatus.NOT_ACCEPTABLE);
-    }
-
 }

@@ -1,4 +1,4 @@
-package com.example.AltairNew.Model;
+package com.example.Altair.Model;
 
 
 public class HeartBeatModel {
