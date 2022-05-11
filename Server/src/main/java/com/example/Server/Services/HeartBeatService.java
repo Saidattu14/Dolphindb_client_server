@@ -14,12 +14,21 @@ public class HeartBeatService {
     @Autowired
     HeartBeatImp heartBeatImp;
 
+    /**
+     * This method is service Where it calls create streamTable heartbeat.
+     * @return the String format data of the result.
+     */
     public String createData()
     {
         return heartBeatImp.createHeartBeatTable();
 
     }
 
+    /**
+     * This method is service Where it whether the request body is in correct format or not.
+     * If the request body is in correct format then it call insert to append data in the table.
+     * @return the String format data of the result.
+     */
     public String insertData(HeartBeatModel heartBeatModel)
     {
         try {
@@ -60,6 +69,10 @@ public class HeartBeatService {
 
     }
 
+    /**
+     * This method is convert date in to the format of '2013.08.19' like structure.
+     * @return the String
+     */
     public String getdatetostring(String date)
     {
         try {
@@ -88,7 +101,11 @@ public class HeartBeatService {
             return null;
         }
     }
-
+    /**
+     * This method is service Where it checks the params date format or time format is correct or not.
+     * If it is correct then it call respective functions for fetching data.
+     * @return the String format data of the result.
+     */
     public String readData(String date, String time)
     {
         if (date == null && time == null)

@@ -15,9 +15,13 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 public class SubscriberApplication {
-
+	 /**
+	 * This is a polling client where it subscribed to the streaming table.
+	 * If any new data is added into the table it pull and display the data.
+	 */
 	public static void main(String[] args) throws SocketException {
 		SpringApplication.run(SubscriberApplication.class, args);
+
 		PollingClient client = new PollingClient(8892);
 		try {
 			TopicPoller poller1 = client.subscribe("localhost", 8900, "heartbeat",0,true);

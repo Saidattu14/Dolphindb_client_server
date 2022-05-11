@@ -21,6 +21,11 @@ public class HeartBeatImp implements HeartBeatRepository{
         this.dbConnection = dbConnection;
     }
 
+
+    /**
+     * This method is checks whether the heartbeat is present or not.
+     * @return the true if table is present or false.
+     */
     public boolean CheckTable()
     {
         try {
@@ -35,7 +40,10 @@ public class HeartBeatImp implements HeartBeatRepository{
         }
 
     }
-
+    /**
+     * This method is Query Where it creates a streamTable heartbeat.
+     * @return the String whether the table is already present or Tabel created successfully.
+     */
     @Override
     public String createHeartBeatTable() {
 
@@ -52,6 +60,10 @@ public class HeartBeatImp implements HeartBeatRepository{
             return "Table Failed to Create";
         }
     }
+    /**
+     * This method is creates a row data for the heartbeat table.
+     * @return the row details that was to be inserted on the table.
+     */
     private BasicTable createBasicTable(LocalDate localDate,int hours, int minutes, int heatbeatrate) {
         List<String> colNames = new ArrayList<>();
         colNames.add("heartbeatrate");
@@ -70,6 +82,11 @@ public class HeartBeatImp implements HeartBeatRepository{
         cols.add(bminutev);
         return new BasicTable(colNames, cols);
     }
+
+    /**
+     * This method is Query Where it appends the new row into the streamTable heartbeat.
+     * @return the true whether for successfully insert else false.
+     */
     @Override
     public boolean insertHeartBeatData(LocalDate localDate,int hours, int minutes, int heatbeatrate) {
         try {
@@ -88,6 +105,10 @@ public class HeartBeatImp implements HeartBeatRepository{
         }
 
     }
+    /**
+     * This method is Query Where it fetches all the data in the streamTable heartbeat.
+     * @return the data in the String format else null.
+     */
     @Override
     public String getAllHeartBeatData() {
         try {
@@ -100,6 +121,10 @@ public class HeartBeatImp implements HeartBeatRepository{
         }
 
     }
+    /**
+     * This method is Query Where it fetches rows of the streamTable heartbeat data on Particular Date.
+     * @return the String format data else null.
+     */
     @Override
     public String getHeartBeatDataonParticularDate(String date) {
         try {
@@ -112,6 +137,10 @@ public class HeartBeatImp implements HeartBeatRepository{
         }
 
     }
+    /**
+     * This method is Query Where it fetches rows of the streamTable heartbeat data on Particular Date and Time.
+     * @return the String format data else null.
+     */
     @Override
     public String getHeartBeatDataonParticularDateTime(String date,String time) {
         try {

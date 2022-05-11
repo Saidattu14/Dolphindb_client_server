@@ -6,6 +6,10 @@ public class HeartBeatModel {
     private String date;
     private String time;
     private int heatbeatrate;
+    /**
+     * This model is used for request body.
+     * @return the date, time, heartbeatrate.
+     */
     HeartBeatModel(String date, String time, int heatbeatrate)
     {
         this.date = date;

@@ -3,6 +3,7 @@ package com.example.Server.repository;
 
 import java.time.LocalDate;
 
+
 public interface HeartBeatRepository {
 
     String createHeartBeatTable();

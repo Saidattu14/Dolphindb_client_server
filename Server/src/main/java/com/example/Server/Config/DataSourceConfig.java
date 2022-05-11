@@ -10,6 +10,10 @@ import java.io.IOException;
 @Configuration
 public class DataSourceConfig {
 
+    /**
+     * This is a database connection instance where it connects the database on port 8900.
+     * @return connection
+     */
     @Bean
     public DBConnection dbConnection() throws IOException {
         DBConnection connection = new DBConnection();

@@ -16,6 +16,10 @@ public class HeartBeatController {
     @Autowired
     HeartBeatService heartBeatService;
 
+    /**
+     * This endpoint is post method which it create a streamTable.
+     * @return the String format data of the result.
+     */
     @PostMapping("/create")
     public ResponseEntity<String> CreateData() {
 
@@ -31,6 +35,11 @@ public class HeartBeatController {
         return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 
     }
+    /**
+     * This endpoint is post method which it inserts the data into the streamTable.
+     * Request body format is date "2013-09-05" time "23:15" heartbeatrate "30"
+     * @return the String format data of the result.
+     */
     @PostMapping("/insert")
     public ResponseEntity<String> InsertData(@RequestBody HeartBeatModel heartBeatModel) {
 
@@ -45,7 +54,11 @@ public class HeartBeatController {
         }
         return new ResponseEntity<>(res,HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
+    /**
+     * This endpoint is get method which it fetches the data in the a streamTable.
+     * Request Param is  date "2013-09-05" and time "23:15" default is null
+     * @return the String format data of the result.
+     */
     @GetMapping("/read")
     public ResponseEntity<String> ReadData(
             @RequestParam(required = false) String date,
